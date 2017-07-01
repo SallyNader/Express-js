@@ -106,7 +106,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!---  <img src="http://themekit-v4.themekit.io/dist/themes/social-2/images/people/110/guy-5.jpg" class="img-circle">---->
           <div class="panel-body">
               
-              <form  action="register/insert" method="post">
+              <form  action="register/register" method="post">
                   <input class="form-control" name="username" type="text" placeholder="Username">
             <input class="form-control" name="password"  type="password" placeholder="Enter Password">
              <input class="form-control" name="confirmPassword"  type="password" placeholder="Confirm Password">
@@ -117,8 +117,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                                 <input type ="submit" class="btn btn-primary" value="Register"   >
             
             </form>
+              <span><%= msgError %></span>
               
-              <% if(errors != null){%>
+<!--              <% if(errors != null){%>
               <div>
                   
                   <ul>
@@ -130,7 +131,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
                   </ul>
               </div>
               
-              <%  } %>
+              <%  } %>-->
            <!--- <a href="#" class="forgot-password">Forgot password?</a>--->
           </div>
         

@@ -6,58 +6,48 @@ var cookieParser = require('cookie-parser');
 var session=require("express-session");
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-//var index = require('./routes/index');
-//var multer=require("multer");
-//var upload=multer({dest:"public/uploads/"});
+var  MongoStore=require("connect-mongo")(session);
  var   relationship = require("mongoose-relationship");
+var flash=require("express-flash");
+var mongoose=require("mongoose");
+var passport=require("passport");
+var users = require('./controllers/users');
+var register=require('./controllers/register');
+var home=require("./controllers/home");
+var login=require("./controllers/login");
+var comment=require("./controllers/comment");
+var upload=require("./controllers/upload");
 
+var profile=require("./controllers/profile");
 
-
-var users = require('./routes/users');
-var register=require('./routes/register');
-var home=require("./routes/home");
-var login=require("./routes/login");
-var comment=require("./routes/comment");
-var upload=require("./routes/upload");
-
-var profile=require("./routes/profile");
+require("./config/passport");
 var app = express();
 app.locals.username="empty";
-// view engine setup
+
 
 app.use(session({ resave: true,  saveUninitialized: true,secret:"3836428"}));
-
+app.use(flash());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.get("/username/:username",function(req,res,next){
-    
-    
-    res.send(req.username);
-    
-});
 
-
-app.get("/",function(req,res,next){
-    
-    res.render("chat");
-    
-    
-});
-app.param("username",function(req,res,next,username){
-    
-    if(username == "ali")
-        res.send("no alii");
-    else
-        console.log("atfdl ya bsha");
-});
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cookieParser());
 
+
+app.use(session({
+    
+    secret:"multimedia",
+    resave:true,
+    saveUninitialized:true,
+    store:new MongoStore({mongooseConnection:mongoose.connection})
+    
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', index);
