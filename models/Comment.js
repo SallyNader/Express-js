@@ -1,5 +1,5 @@
 
-var connection=require("./connection"),
+const connection=require("./connection"),
      mongoose=require("mongoose"),
      relationship=require("mongoose-relationship"),
      commentSchema= mongoose.Schema({

@@ -1,4 +1,4 @@
-var connection=require("./connection"),
+const connection=require("./connection"),
  mongoose = require( 'mongoose' ),
  Schema  =mongoose.Schema,
  relationship=require("mongoose-relationship"),

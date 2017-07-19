@@ -1,6 +1,6 @@
 
 
-var mongoose=require("mongoose"),
+const mongoose=require("mongoose"),
     connection=require("./connection"),
     relationship = require("mongoose-relationship"),
 

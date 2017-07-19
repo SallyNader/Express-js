@@ -1,10 +1,10 @@
 
-var express = require('express'),
+const express = require('express'),
       router = express.Router(),
       User = require("../models/User"),
       passport=require("passport"),
       Gallery=require("../models/Gallery");
-/* GET home page. */
+
 router.get('/',isLoggedIn, function(req, res, next) {
 
 User.findOne({username:req.session.username},function(err,user){
